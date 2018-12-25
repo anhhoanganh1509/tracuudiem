@@ -40,14 +40,14 @@ public class UserDao {
 		session.save(ur);
 		String subject = "User Activation Account";
 		String message = "Please click on the following link to active your account."
-				+"\n"+"http://localhost:8080/TraCuuDiem/activeUser/"+u.getUsername()+"\n\n"
+				+"\n"+"https://tracuudiem.herokuapp.com/activeUser/"+u.getUsername()+"\n\n"
 				+"- Username:"+u.getUsername()+"\n"+"- Password:"+pass.substring(8);
 		
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(u.getEmail());
 		email.setSubject(subject);
 		email.setText(message);		
-		//mailSender.send(email);
+		mailSender.send(email);
 	}
 
 	public Users finbyId(final String id) {
