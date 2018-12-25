@@ -1,0 +1,16 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://ec2-54-243-212-227.compute-1.amazonaws.com:5432/d2flk153a0hma5" />
+		<property name="username" value="flbvseqidogtct" />
+		<property name="password" value="e82c13fcc0ce9ff77caa2028e05376806f9f348a73d2ebe2c2b3780290eb8e00" />
+	</bean>
+
+</beans>
