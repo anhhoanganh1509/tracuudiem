@@ -28,9 +28,6 @@ public class Users {
     @Column(name = "email")
 	private String email;
 	
-    @Column(name = "status")
-	private int status;
-    
     @Column(name = "ngaytao")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern="dd/MM/yyyy")
@@ -77,14 +74,6 @@ public class Users {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
 	}
 
 	public Date getNgaytao() {

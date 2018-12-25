@@ -47,7 +47,7 @@ public class UserDao {
 		email.setTo(u.getEmail());
 		email.setSubject(subject);
 		email.setText(message);		
-		mailSender.send(email);
+		//mailSender.send(email);
 	}
 
 	public Users finbyId(final String id) {
@@ -56,7 +56,7 @@ public class UserDao {
 	}
 
 	public void ActiveUsers(Users u) {
-		if(u.getStatus() == 0) {
+		if(u.getEnabled() == 0) {
 			Session session = this.sessionFactory.getCurrentSession();
 			u.setEnabled(1);
 			u.setNgaysua(new Date());	
