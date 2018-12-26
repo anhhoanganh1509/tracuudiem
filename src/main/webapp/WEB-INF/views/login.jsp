@@ -10,12 +10,11 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/style.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page session="true"%>
 </head>
 <body>
 	<div class="login-form">		
-		<form:form name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST' autocomplete="off">			
+		<form name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST'>			
 			<h2 class="text-center">Log in</h2>
 			<c:if test="${not empty error}">
 				<div style="text-align: center;color: red;">${error}</div>
@@ -24,10 +23,10 @@
 				<div style="text-align: center;color: blue;">${msg}</div>
 			</c:if>
 			<div class="form-group">
-            	<input type="text" class="form-control" name="username" placeholder="Username" >
+            	<input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off">
         	</div>
         	<div class="form-group">
-            	<input type="password" class="form-control" name="password" placeholder="Password">
+            	<input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off">
 			</div>
 			<div class="form-group">
             	<button type="submit" class="btn btn-primary btn-block">Log in</button>
@@ -36,7 +35,7 @@
             	</div>
             </div>				
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		</form:form>
+		</form>
 		
 	</div>
 </body>

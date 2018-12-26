@@ -51,7 +51,7 @@ public class UserDao{
 		try {
 			mailSender.send(email);
 		}catch(Exception ex) {
-			ex.printStackTrace();
+			ex.printStackTrace();		
 		}		
 	}
 
