@@ -16,7 +16,7 @@ import vn.springhibernate.hoanganh.model.Users;
 
 @Repository
 @Transactional(rollbackFor = Exception.class)
-public class UserDao {
+public class UserDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -24,7 +24,7 @@ public class UserDao {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	public void CreateNewUser(final Users u) {
+	public void CreateNewUser(final Users u){
 		Session session = this.sessionFactory.getCurrentSession();
 		String pass = String.valueOf(new Date().getTime());
 		u.setUsername(u.getUsername());		
@@ -38,6 +38,7 @@ public class UserDao {
 		ur.setUsername(u.getUsername());
 		ur.setRole("ROLE_ADMIN");
 		session.save(ur);
+		
 		String subject = "User Activation Account";
 		String message = "Please click on the following link to active your account."
 				+"\n"+"https://tracuudiem.herokuapp.com/activeUser/"+u.getUsername()+"\n\n"
@@ -46,8 +47,12 @@ public class UserDao {
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(u.getEmail());
 		email.setSubject(subject);
-		email.setText(message);		
-		mailSender.send(email);
+		email.setText(message);	
+		try {
+			mailSender.send(email);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}		
 	}
 
 	public Users finbyId(final String id) {
@@ -104,7 +109,11 @@ public class UserDao {
 		email.setTo(u.getEmail());
 		email.setSubject(subject);
 		email.setText(message);		
-		mailSender.send(email);
+		try {
+			mailSender.send(email);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }
