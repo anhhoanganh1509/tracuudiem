@@ -45,6 +45,7 @@ public class UserDao {
 		email.setSubject(subject);
 		email.setText(message);
 		try {
+			MailUtil.send("hoangsinaran5@gmail.com", u.getEmail(), subject, "");
 			//mailSender.send(email);
 		} catch (Exception ex) {
 			ex.printStackTrace();
