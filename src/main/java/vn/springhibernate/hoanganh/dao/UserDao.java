@@ -9,6 +9,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.springhibernate.hoanganh.controller.MailUtil;
 import vn.springhibernate.hoanganh.model.Student;
 import vn.springhibernate.hoanganh.model.User_roles;
 import vn.springhibernate.hoanganh.model.Users;
@@ -20,6 +21,8 @@ public class UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;	
 
+	
+    
 	public void CreateNewUser(final Users u) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String pass = String.valueOf(new Date().getTime());
@@ -45,7 +48,8 @@ public class UserDao {
 		email.setSubject(subject);
 		email.setText(message);
 		try {
-			MailUtil.send("hoangsinaran5@gmail.com", u.getEmail(), subject, "");
+			MailUtil abc = new MailUtil();
+			abc.SendMail();
 			//mailSender.send(email);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -107,7 +111,7 @@ public class UserDao {
 		email.setSubject(subject);
 		email.setText(message);
 		try {
-			MailUtil.send("hoangsinaran5@gmail.com", u.getEmail(), subject, "");			
+					
 			//mailSender.send(email);
 		} catch (Exception ex) {
 			ex.printStackTrace();
