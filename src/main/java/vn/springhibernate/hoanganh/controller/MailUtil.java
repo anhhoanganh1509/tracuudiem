@@ -10,9 +10,9 @@ public class MailUtil {
     private static final String SMTP_AUTH_USER = "anhhoanganh1509";
     private static final String SMTP_AUTH_PWD = "Hoang123@";
 
-    /*public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception{
         new MailUtil().SendMail();
-    }*/
+    }
 
     public void SendMail() throws Exception
     {
@@ -28,9 +28,9 @@ public class MailUtil {
           MimeMessage message = new MimeMessage(mailSession);
           Multipart multipart = new MimeMultipart("alternative");
           BodyPart part1 = new MimeBodyPart();
-          part1.setText("Hello, Your Contoso order has shipped. Thank you, John");
+          part1.setText("");
           BodyPart part2 = new MimeBodyPart();
-          part2.setContent("<p>Hello,</p><p>Your Contoso order has <b>shipped</b>.</p><p>Thank you,<br>John</br></p>","text/html");
+          part2.setContent("","");
           multipart.addBodyPart(part1);
           multipart.addBodyPart(part2);
           message.setFrom(new InternetAddress("anhhoanganh1509@gmail.com"));
