@@ -38,8 +38,12 @@ public class MainController {
 	@RequestMapping(value="/jsp/index")
 	public String adminPages(Authentication authentication, Model model) {
 		Student info = uService.finbyStudentId(authentication.getName());
-		model.addAttribute("infoStudent",info);
-		return "jsp/index";
+		if(info.getDaxoa() == 1) {
+			model.addAttribute("infoStudent",info);
+			return "jsp/index";
+		}else {
+			return "jsp/changePass";
+		}		
 	}
 
 	@RequestMapping(value = "/registerAccount", method = RequestMethod.GET)

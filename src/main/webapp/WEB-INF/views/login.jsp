@@ -30,9 +30,9 @@
 			</div>
 			<div class="form-group">
             	<button type="submit" class="btn btn-primary btn-block">Log in</button>
-            	<div style="text-align: right;color: black;">
+            	<%-- <div style="text-align: right;color: black;">
             		Don’t have an account? <a href="${root}/registerAccount"><label>register</label></a>
-            	</div>
+            	</div> --%>
             </div>				
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>

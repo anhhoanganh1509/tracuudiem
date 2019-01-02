@@ -9,7 +9,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.springhibernate.hoanganh.controller.MailUtil;
 import vn.springhibernate.hoanganh.model.Student;
 import vn.springhibernate.hoanganh.model.User_roles;
 import vn.springhibernate.hoanganh.model.Users;
@@ -21,8 +20,6 @@ public class UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;	
 
-	
-    
 	public void CreateNewUser(final Users u) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String pass = String.valueOf(new Date().getTime());
@@ -48,8 +45,6 @@ public class UserDao {
 		email.setSubject(subject);
 		email.setText(message);
 		try {
-			MailUtil abc = new MailUtil();
-			abc.SendMail();
 			//mailSender.send(email);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -102,6 +97,7 @@ public class UserDao {
 		Users u = this.finbyId(id);
 		u.setPassword(newPass);
 		u.setNgaysua(new Date());
+		u.setDaxoa(1);
 		session.update(u);
 		String subject = "Change Password";
 		String message = "The change password process has completed successfully." + "\n" + "- Username:"
@@ -110,8 +106,7 @@ public class UserDao {
 		email.setTo(u.getEmail());
 		email.setSubject(subject);
 		email.setText(message);
-		try {
-					
+		try {					
 			//mailSender.send(email);
 		} catch (Exception ex) {
 			ex.printStackTrace();
