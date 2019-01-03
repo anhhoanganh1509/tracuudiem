@@ -38,6 +38,7 @@ public class MainController {
 	@RequestMapping(value="/jsp/index")
 	public String adminPages(Authentication authentication, Model model) {
 		Student info = uService.finbyStudentId(authentication.getName());
+		
 		if(info.getDaxoa() == 1) {
 			model.addAttribute("infoStudent",info);
 			return "jsp/index";
