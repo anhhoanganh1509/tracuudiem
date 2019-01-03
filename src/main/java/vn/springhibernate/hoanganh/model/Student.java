@@ -30,8 +30,8 @@ public class Student {
     @DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dayOfBirth;
     
-    @Column(name = "className")
-	private String className;
+    @Column(name = "classname")
+	private String classname;
     
     @Column(name = "process")
 	private String process;
@@ -84,12 +84,12 @@ public class Student {
 		this.dayOfBirth = dayOfBirth;
 	}
 
-	public String getClassName() {
-		return className;
+	public String getClassname() {
+		return classname;
 	}
 
-	public void setClassName(String className) {
-		this.className = className;
+	public void setClassname(String classname) {
+		this.classname = classname;
 	}
 
 	public String getProcess() {

@@ -62,7 +62,7 @@
 							<div class="row">
 								<div class="col col-xs-4 text-left"></div>
 								<div class="col col-xs-2 text-left">Tên Lớp</div>
-								<div class="col col-xs-6 text-left"></div>
+								<div class="col col-xs-6 text-left">${infoStudent.classname}</div>
 							</div>
 						</c:if>
 					</div>
