@@ -53,7 +53,7 @@
 							<div class="row">
 								<div class="col col-xs-4 text-left"></div>
 								<div class="col col-xs-2 text-left">Tên sinh viên</div>
-								<div class="col col-xs-6 text-left">${c.lastmame}&nbsp;${c.firstmame}</div>
+								<div class="col col-xs-6 text-left">${c.lastname}&nbsp;${c.firstname}</div>
 							</div>
 							<div class="row">
 								<div class="col col-xs-4 text-left"></div>
