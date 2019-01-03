@@ -33,7 +33,7 @@
 											document.getElementById("logoutForm").submit();
 										}
 									</script>
-									<c:if test="${empty admin}">
+									<c:if test="${not empty admin}">
 										<form id="logoutForm" action="<c:url value='/j_spring_security_logout' />" method='POST'>					
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 										</form>
