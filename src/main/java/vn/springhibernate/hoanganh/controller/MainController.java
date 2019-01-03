@@ -44,7 +44,6 @@ public class MainController {
 				model.addAttribute("infoStudent",info);
 				return "jsp/index";
 			}else if(uService.finbyId(authentication.getName()).getDaxoa() == 2){
-				model.addAttribute("admin",info);
 				model.addAttribute("infoStudent",info);
 				return "jsp/index";	
 			}else {

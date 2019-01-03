@@ -21,7 +21,7 @@
 			<div id="user" class="col-md-12">
 				<div class="panel panel-primary panel-table animated slideInDown">
 					<div class="panel-heading " style="padding: 5px;">
-						<c:if test="${not empty infoStudent && empty admin}">
+						<c:if test="${not empty infoStudent}">
 							<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 							<div class="row">
 								<div class="col col-xs-4 text-left">
@@ -88,7 +88,7 @@
 										<c:if test="${not empty infoStudent}">
 											<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 												<tr>
-													<td>{itr.index +1}</td>
+													<td>${itr+1}</td>
 													<td>Toán Rời Rạc</td>
 													<td>DTN0100/01</td>
 													<td>3</td>
