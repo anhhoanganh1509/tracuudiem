@@ -88,7 +88,7 @@
 										<c:if test="${not empty infoStudent}">
 											<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 												<tr>
-													<td>${itr+1}</td>
+													<td>${itr.index + 1 }</td>
 													<td>Toán Rời Rạc</td>
 													<td>DTN0100/01</td>
 													<td>3</td>
