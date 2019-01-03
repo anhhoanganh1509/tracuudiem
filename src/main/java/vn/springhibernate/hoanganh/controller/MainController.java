@@ -1,6 +1,7 @@
 package vn.springhibernate.hoanganh.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,14 +38,18 @@ public class MainController {
 	
 	@RequestMapping(value="/jsp/index")
 	public String adminPages(Authentication authentication, Model model) {
-		Student info = uService.finbyStudentId(authentication.getName());
+		List<Student> info = uService.finbyStudentId(authentication.getName());
 		
-		if(info.getDaxoa() == 1) {
+		if(info.get(0).getDaxoa() == 1) {
 			model.addAttribute("infoStudent",info);
 			return "jsp/index";
+		}else if(info.get(0).getDaxoa() == 2){
+			model.addAttribute("admin",info);
+			model.addAttribute("infoStudent",info);
+			return "jsp/index";	
 		}else {
-			return "jsp/changePass";
-		}		
+			return "jsp/changePass";	
+		}				
 	}
 
 	@RequestMapping(value = "/registerAccount", method = RequestMethod.GET)

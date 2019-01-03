@@ -21,7 +21,8 @@
 			<div id="user" class="col-md-12">
 				<div class="panel panel-primary panel-table animated slideInDown">
 					<div class="panel-heading " style="padding: 5px;">
-						<c:if test="${not empty infoStudent}">
+						<c:if test="${not empty infoStudent && empty admin}">
+							<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 							<div class="row">
 								<div class="col col-xs-4 text-left">
 									<a href="javascript:formSubmit()" class="btn btn-default" aria-controls="list" role="tab" data-toggle="tab" style="text-transform: capitalize;"> 
@@ -47,23 +48,24 @@
 									</form>
 								</div>
 								<div class="col col-xs-2 text-left">Mã sinh viên</div>
-								<div class="col col-xs-6 text-left">${infoStudent.studentma}</div>
+								<div class="col col-xs-6 text-left">${c.studentma}</div>
 							</div>
 							<div class="row">
 								<div class="col col-xs-4 text-left"></div>
 								<div class="col col-xs-2 text-left">Tên sinh viên</div>
-								<div class="col col-xs-6 text-left">${infoStudent.lastName}&nbsp;${infoStudent.firstName}</div>
+								<div class="col col-xs-6 text-left">${c.lastname}&nbsp;${c.firstname}</div>
 							</div>
 							<div class="row">
 								<div class="col col-xs-4 text-left"></div>
 								<div class="col col-xs-2 text-left">Ngày sinh</div>
-								<div class="col col-xs-6 text-left"><fmd:formatDate pattern="dd-MM-yyyy" value="${infoStudent.dayOfBirth}" /></div>
+								<div class="col col-xs-6 text-left"><fmd:formatDate pattern="dd-MM-yyyy" value="${c.dayofbirth}" /></div>
 							</div>
 							<div class="row">
 								<div class="col col-xs-4 text-left"></div>
 								<div class="col col-xs-2 text-left">Tên Lớp</div>
-								<div class="col col-xs-6 text-left">${infoStudent.classname}</div>
+								<div class="col col-xs-6 text-left">${c.classname}</div>
 							</div>
+							</c:forEach>
 						</c:if>
 					</div>
 					<div class="panel-body">
@@ -84,16 +86,18 @@
 									</thead>
 									<tbody>
 										<c:if test="${not empty infoStudent}">
-											<tr>
-												<td>1</td>
-												<td>Toán Rời Rạc</td>
-												<td>DTN0100/01</td>
-												<td>3</td>
-												<td>${infoStudent.process}</td>
-												<td>${infoStudent.midTerm}</td>
-												<td>${infoStudent.exam}</td>
-												<td>${infoStudent.note}</td>
-											</tr>
+											<c:forEach var="c" items="${infoStudent}" varStatus="itr">
+												<tr>
+													<td>{itr.index +1}</td>
+													<td>Toán Rời Rạc</td>
+													<td>DTN0100/01</td>
+													<td>3</td>
+													<td>${c.process}</td>
+													<td>${c.midterm}</td>
+													<td>${c.exam}</td>
+													<td>${c.note}</td>
+												</tr>
+											</c:forEach>
 										</c:if>
 									</tbody>
 								</table>

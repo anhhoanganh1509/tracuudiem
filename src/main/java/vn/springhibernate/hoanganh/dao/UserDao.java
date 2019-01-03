@@ -1,6 +1,7 @@
 package vn.springhibernate.hoanganh.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -87,9 +88,10 @@ public class UserDao {
 		return value;
 	}
 
-	public Student finbyStudentId(final String id) {
+	public List<Student> finbyStudentId(final String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.get(Student.class, id);
+		return session.createQuery("FROM "+Student.class.getName()
+				+" where studentma = '"+id+"' ", Student.class).getResultList();
 	}
 
 	public void UpdatePass(final String newPass, final String id) {

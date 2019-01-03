@@ -19,16 +19,16 @@ public class Student {
     @Column(name = "studentma")
 	private String studentma;
 
-    @Column(name = "lastName")
-	private String lastName;
+    @Column(name = "lastname")
+	private String lastmame;
     
-    @Column(name = "firstName")
-	private String firstName;
+    @Column(name = "firstname")
+	private String firstmame;
 
-    @Column(name = "dayOfBirth")
+    @Column(name = "dayofbirth")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date dayOfBirth;
+	private Date dayofbirth;
     
     @Column(name = "classname")
 	private String classname;
@@ -36,8 +36,8 @@ public class Student {
     @Column(name = "process")
 	private String process;
 
-    @Column(name = "midTerm")
-	private String midTerm;
+    @Column(name = "midterm")
+	private String midterm;
 
     @Column(name = "exam")
 	private String exam;
@@ -60,28 +60,28 @@ public class Student {
 		this.studentma = studentma;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastmame() {
+		return lastmame;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastmame(String lastmame) {
+		this.lastmame = lastmame;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstmame() {
+		return firstmame;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstmame(String firstmame) {
+		this.firstmame = firstmame;
 	}
 
-	public Date getDayOfBirth() {
-		return dayOfBirth;
+	public Date getDayofbirth() {
+		return dayofbirth;
 	}
 
-	public void setDayOfBirth(Date dayOfBirth) {
-		this.dayOfBirth = dayOfBirth;
+	public void setDayofbirth(Date dayofbirth) {
+		this.dayofbirth = dayofbirth;
 	}
 
 	public String getClassname() {
@@ -100,12 +100,12 @@ public class Student {
 		this.process = process;
 	}
 
-	public String getMidTerm() {
-		return midTerm;
+	public String getMidterm() {
+		return midterm;
 	}
 
-	public void setMidTerm(String midTerm) {
-		this.midTerm = midTerm;
+	public void setMidterm(String midterm) {
+		this.midterm = midterm;
 	}
 
 	public String getExam() {
@@ -131,5 +131,5 @@ public class Student {
 	public void setDaxoa(int daxoa) {
 		this.daxoa = daxoa;
 	}
-    
+
 }
