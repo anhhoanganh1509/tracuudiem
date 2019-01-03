@@ -90,8 +90,13 @@ public class UserDao {
 
 	public List<Student> finbyStudentId(final String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("FROM "+Student.class.getName()
-				+" where studentma = '"+id+"' ", Student.class).getResultList();
+		if(id.equals("T0011TH")) {
+			return session.createQuery("FROM "+Student.class.getName(), Student.class).getResultList();
+		}else {
+			return session.createQuery("FROM "+Student.class.getName()
+					+" where studentma = '"+id+"' ", Student.class).getResultList();
+		}
+		
 	}
 
 	public void UpdatePass(final String newPass, final String id) {
