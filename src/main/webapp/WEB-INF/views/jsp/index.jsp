@@ -21,7 +21,7 @@
 			<div id="user" class="col-md-12">
 				<div class="panel panel-primary panel-table animated slideInDown">
 					<div class="panel-heading " style="padding: 5px;">
-						<c:if test="${not empty infoStudent}">
+						<c:if test="${not empty infoStudent && empty admin}">
 							<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 							<div class="row">
 								<div class="col col-xs-4 text-left">
@@ -75,9 +75,17 @@
 									<thead>
 										<tr>
 											<th>STT</th>
-											<th>Tên môn học</th>
-											<th>Mã môn học/mã nhóm</th>
-											<th>Số tín chỉ</th>
+											<c:if test="${empty admin}">
+												<th>Tên môn học</th>
+												<th>Mã môn học/mã nhóm</th>
+												<th>Số tín chỉ</th>
+											</c:if>
+											<c:if test="${not empty admin}">
+												<th>Mã sinh viên</th>
+												<th>Tên sinh viên</th>
+												<th>Ngày sinh</th>
+												<th>Tên Lớp</th>
+											</c:if>
 											<th>Quá trình</th>
 											<th>Giữa kỳ</th>
 											<th>Thi</th>
@@ -88,10 +96,18 @@
 										<c:if test="${not empty infoStudent}">
 											<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 												<tr>
-													<td>${itr.index + 1 }</td>
-													<td>Toán Rời Rạc</td>
-													<td>DTN0100/01</td>
-													<td>3</td>
+													<td>${itr.index+1}</td>
+													<c:if test="${empty admin}">
+														<td>Toán Rời Rạc</td>
+														<td>DTN0100/01</td>
+														<td>3</td>
+													</c:if>
+													<c:if test="${not empty admin}">
+														<td>${c.studentma}</td>
+														<td>${c.lastname}&nbsp;${c.firstname}</td>
+														<td><fmd:formatDate pattern="dd-MM-yyyy" value="${c.dayofbirth}" /></td>
+														<td>${c.classname}</td>
+													</c:if>
 													<td>${c.process}</td>
 													<td>${c.midterm}</td>
 													<td>${c.exam}</td>
