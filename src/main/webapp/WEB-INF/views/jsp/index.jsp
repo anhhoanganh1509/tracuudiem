@@ -21,7 +21,7 @@
 			<div id="user" class="col-md-12">
 				<div class="panel panel-primary panel-table animated slideInDown">
 					<div class="panel-heading " style="padding: 5px;">
-						<c:if test="${not empty infoStudent && empty admin}">
+						<c:if test="${not empty infoStudent}">
 							<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 							<div class="row">
 								<div class="col col-xs-4 text-left">
@@ -41,6 +41,7 @@
 									</a>
 								</div>
 							</div>
+							<c:if test="${empty admin}">
 							<div class="row">
 								<div class="col col-xs-4 text-left">								
 									<form id="logoutForm" action="<c:url value='/j_spring_security_logout' />" method='POST'>					
@@ -65,6 +66,7 @@
 								<div class="col col-xs-2 text-left">Tên Lớp</div>
 								<div class="col col-xs-6 text-left">${c.classname}</div>
 							</div>
+							</c:if>
 							</c:forEach>
 						</c:if>
 					</div>
