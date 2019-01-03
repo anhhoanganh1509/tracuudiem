@@ -32,7 +32,12 @@
 										function formSubmit() {
 											document.getElementById("logoutForm").submit();
 										}
-									</script>									
+									</script>
+									<c:if test="${empty admin}">
+										<form id="logoutForm" action="<c:url value='/j_spring_security_logout' />" method='POST'>					
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+										</form>
+									</c:if>									
 								</div>
 								<div class="col col-xs-2 text-left">Bảng ghi điểm học phần</div>
 								<div class="col col-xs-6 text-left">Học kỳ 1 - Năm học 2018-2019

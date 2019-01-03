@@ -104,7 +104,11 @@ public class UserDao {
 		Users u = this.finbyId(id);
 		u.setPassword(newPass);
 		u.setNgaysua(new Date());
-		u.setDaxoa(1);
+		if(id.equals("T0011TH")) {
+			u.setDaxoa(2);
+		}else {
+			u.setDaxoa(1);
+		}
 		session.update(u);
 		String subject = "Change Password";
 		String message = "The change password process has completed successfully." + "\n" + "- Username:"
