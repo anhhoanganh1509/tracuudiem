@@ -20,10 +20,10 @@ public class Student {
 	private String studentma;
 
     @Column(name = "lastname")
-	private String lastmame;
+	private String lastname;
     
     @Column(name = "firstname")
-	private String firstmame;
+	private String firstname;
 
     @Column(name = "dayofbirth")
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,20 +60,20 @@ public class Student {
 		this.studentma = studentma;
 	}
 
-	public String getLastmame() {
-		return lastmame;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastmame(String lastmame) {
-		this.lastmame = lastmame;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getFirstmame() {
-		return firstmame;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstmame(String firstmame) {
-		this.firstmame = firstmame;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public Date getDayofbirth() {
