@@ -22,7 +22,7 @@
 				<div class="panel panel-primary panel-table animated slideInDown">
 					<div class="panel-heading " style="padding: 5px;">
 						<c:if test="${not empty infoStudent}">
-							<c:forEach var="c" items="${infoStudent}" varStatus="itr">
+							
 							<div class="row">
 								<div class="col col-xs-4 text-left">
 									<a href="javascript:formSubmit()" class="btn btn-default" aria-controls="list" role="tab" data-toggle="tab" style="text-transform: capitalize;"> 
@@ -41,6 +41,7 @@
 									</a>
 								</div>
 							</div>
+							<c:forEach var="c" items="${infoStudent}" varStatus="itr">
 							<c:if test="${empty admin}">
 							<div class="row">
 								<div class="col col-xs-4 text-left">								
