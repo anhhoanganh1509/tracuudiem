@@ -37,20 +37,23 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/jsp/index")
-	public String adminPages(Authentication authentication, Model model) {
-		List<Student> info = uService.finbyStudentId(authentication.getName());
-		System.out.println("-----------"+info.get(0).getDaxoa());
-		System.out.println("-----11111------"+info.get(1).getDaxoa());
-		if(info.get(0).getDaxoa() == 1) {
-			model.addAttribute("infoStudent",info);
-			return "jsp/index";
-		}else if(info.get(0).getDaxoa() == 2){
-			model.addAttribute("admin",info);
-			model.addAttribute("infoStudent",info);
-			return "jsp/index";	
-		}else {
-			return "jsp/changePass";	
-		}				
+	public String adminPages(Authentication authentication, Model model) {			
+		try {
+			List<Student> info = uService.finbyStudentId(authentication.getName());
+			if(uService.finbyId(authentication.getName()).getDaxoa() == 1) {
+				model.addAttribute("infoStudent",info);
+				return "jsp/index";
+			}else if(uService.finbyId(authentication.getName()).getDaxoa() == 2){
+				model.addAttribute("admin",info);
+				model.addAttribute("infoStudent",info);
+				return "jsp/index";	
+			}else {
+				return "jsp/changePass";	
+			}
+		}catch(Exception e) {
+			
+		}
+		return null;				
 	}
 
 	@RequestMapping(value = "/registerAccount", method = RequestMethod.GET)
