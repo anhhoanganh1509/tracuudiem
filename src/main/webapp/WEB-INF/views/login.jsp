@@ -15,7 +15,7 @@
 <body>
 	<div class="login-form">		
 		<form name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST'>			
-			<h2 class="text-center">Log in</h2>
+			<h2 class="text-center">Sign in</h2>
 			<c:if test="${not empty error}">
 				<div style="text-align: center;color: red;">${error}</div>
 			</c:if>
@@ -29,7 +29,7 @@
             	<input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off">
 			</div>
 			<div class="form-group">
-            	<button type="submit" class="btn btn-primary btn-block">Log in</button>
+            	<button type="submit" class="btn btn-primary btn-block">Sign in</button>
             	<%-- <div style="text-align: right;color: black;">
             		Don’t have an account? <a href="${root}/registerAccount"><label>register</label></a>
             	</div> --%>

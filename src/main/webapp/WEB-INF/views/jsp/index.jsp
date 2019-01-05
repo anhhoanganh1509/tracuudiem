@@ -26,7 +26,7 @@
 							<div class="row">
 								<div class="col col-xs-4 text-left">
 									<a href="javascript:formSubmit()" class="btn btn-default" aria-controls="list" role="tab" data-toggle="tab" style="text-transform: capitalize;"> 
-										<i class="fa fa-list-alt"></i>logout
+										<i class="fa fa-list-alt"></i>Sign out
 									</a> 
 									<script>
 										function formSubmit() {
