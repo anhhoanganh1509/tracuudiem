@@ -91,7 +91,7 @@ public class UserDao {
 	public List<Student> finbyStudentId(final String id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if(id.equals("T0011TH")) {
-			return session.createQuery("FROM "+Student.class.getName() + " where daxoa = 0 ", Student.class).getResultList();
+			return session.createQuery("FROM "+Student.class.getName() + " where daxoa = 0 order by firstname asc", Student.class).getResultList();
 		}else {
 			return session.createQuery("FROM "+Student.class.getName()
 					+" where studentma = '"+id+"' ", Student.class).getResultList();
