@@ -107,6 +107,7 @@ public class ImportExportThongtin {
 			XSSFCell cellQuatrinh = row.getCell(6);
 			XSSFCell cellGiuaky = row.getCell(7);
 			XSSFCell cellThi = row.getCell(8);
+			XSSFCell cellGhiChu = row.getCell(9);
 
 			String Masinhvien = getHSSFCellValue(cellMasinhvien);
 			String Hosinhvien = getHSSFCellValue(cellHosinhvien);
@@ -116,6 +117,7 @@ public class ImportExportThongtin {
 			String Quatrinh = getHSSFCellValue(cellQuatrinh);
 			String Giuaky = getHSSFCellValue(cellGiuaky);
 			String Thi = getHSSFCellValue(cellThi);
+			String GhiChu = getHSSFCellValue(cellGhiChu);
 
 			flag = false;
 
@@ -162,6 +164,7 @@ public class ImportExportThongtin {
 					d.setQuatrinh(Quatrinh);
 					d.setGiuaky(Giuaky);
 					d.setThi(Thi);
+					d.setGhichu(GhiChu);
 					d.setNgaytao(new Date());
 					d.setDaxoa(0);
 					session.save(d);
