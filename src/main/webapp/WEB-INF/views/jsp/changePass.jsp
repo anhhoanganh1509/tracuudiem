@@ -43,7 +43,7 @@
 <body>
 	<div class="login-form">		
 		<form:form 
-			action="${root}/changePassword" 
+			action="${root}/jsp/changePassword" 
 			method="POST" 
 			autocomplete="off" 
 			name='loginForm' >		

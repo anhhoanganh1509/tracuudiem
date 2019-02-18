@@ -12,68 +12,49 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "user_admin")
-public class Users {
-	
-	@Id
-	@Column(name = "username")
-	private String username;
-	  
-    @Column(name = "password")
-	private String password;
-	
-    @Column(name = "enabled")
-	private int enabled;
+@Table(name = "monhoc")
+public class MonHoc {
+	@Id  
+    @Column(name = "mamonhoc")
+	private String mamonhoc;
+
+    @Column(name = "tenmonhoc")
+	private String tenmonhoc;
     
-    @Column(name = "email")
-	private String email;
-	
     @Column(name = "ngaytao")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date ngaytao;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     @Column(name = "ngaysua")
 	private Date ngaysua;
 
+    @Column(name = "nguoitao")
+	private String nguoitao;
+
     @Column(name = "daxoa")
 	private int daxoa;
-	
-	public Users() {
+
+	public MonHoc() {
 		super();
 	}
 
-	public String getUsername() {
-		return username;
+	public String getMamonhoc() {
+		return mamonhoc;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setMamonhoc(String mamonhoc) {
+		this.mamonhoc = mamonhoc;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getTenmonhoc() {
+		return tenmonhoc;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTenmonhoc(String tenmonhoc) {
+		this.tenmonhoc = tenmonhoc;
 	}
 
 	public Date getNgaytao() {
@@ -90,6 +71,14 @@ public class Users {
 
 	public void setNgaysua(Date ngaysua) {
 		this.ngaysua = ngaysua;
+	}
+
+	public String getNguoitao() {
+		return nguoitao;
+	}
+
+	public void setNguoitao(String nguoitao) {
+		this.nguoitao = nguoitao;
 	}
 
 	public int getDaxoa() {

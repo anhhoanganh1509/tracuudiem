@@ -1,5 +1,6 @@
 package vn.springhibernate.hoanganh.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -7,12 +8,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.springhibernate.hoanganh.model.Student;
+import vn.springhibernate.hoanganh.model.Diem;
+import vn.springhibernate.hoanganh.model.SinhVien;
 import vn.springhibernate.hoanganh.model.User_roles;
-import vn.springhibernate.hoanganh.model.Users;
+import vn.springhibernate.hoanganh.model.User_admin;
+import vn.springhibernate.hoanganh.model.ViewStudent;
 
 @Repository
 @Transactional(rollbackFor = Exception.class)
@@ -20,91 +24,29 @@ public class UserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;	
-
-	public void CreateNewUser(final Users u) {
+	//-----11
+	public User_admin finbyUserId(final String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		String pass = String.valueOf(new Date().getTime());
-		u.setUsername(u.getUsername());
-		u.setPassword(pass.substring(8));
-		u.setEnabled(0);
-		u.setEmail(u.getEmail());
-		u.setNgaytao(new Date());
-		u.setDaxoa(0);
-		session.save(u);
-		User_roles ur = new User_roles();
-		ur.setUsername(u.getUsername());
-		ur.setRole("ROLE_ADMIN");
-		session.save(ur);
-
-		String subject = "User Activation Account";
-		String message = "Please click on the following link to active your account." + "\n"
-				+ "https://tracuudiem.herokuapp.com/activeUser/" + u.getUsername() + "\n\n" + "- Username:"
-				+ u.getUsername() + "\n" + "- Password:" + pass.substring(8);
-
-		SimpleMailMessage email = new SimpleMailMessage();
-		email.setTo(u.getEmail());
-		email.setSubject(subject);
-		email.setText(message);
-		try {
-			//mailSender.send(email);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		return session.get(User_admin.class, id);
 	}
-
-	public Users finbyId(final String id) {
+	//-----22
+	public SinhVien finbyStudent(final String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.get(Users.class, id);
+		return session.get(SinhVien.class, id);
 	}
-
-	public void ActiveUsers(Users u) {
-		if (u.getEnabled() == 0) {
-			Session session = this.sessionFactory.getCurrentSession();
-			u.setEnabled(1);
-			u.setNgaysua(new Date());
-			session.update(u);
-		}
+	//-----33
+	public List<SinhVien> finbyStudentList(final String id) {
+		Session session = this.sessionFactory.getCurrentSession();		
+		return session.createQuery("FROM "+SinhVien.class.getName() 
+				+ " where daxoa = 0 order by tensinhvien asc", SinhVien.class).getResultList();		
 	}
-
-	public Long countCheckMail(String email) {
-		Session session = this.sessionFactory.getCurrentSession();
-		String sql = "Select count(o.username) from " + Users.class.getName()
-				+ " o where o.daxoa = 0 and o.email like '" + email + "'";
-		Long value = (Long) session.createQuery(sql).uniqueResult();
-		if (value == null) {
-			return 0L;
-		}
-		return value;
-	}
-
-	public Long countCheckMaSo(String username) {
-		Session session = this.sessionFactory.getCurrentSession();
-		String sql = "Select count(o.username) from " + Users.class.getName()
-				+ " o where o.daxoa = 0 and o.username like '" + username + "'";
-		Long value = (Long) session.createQuery(sql).uniqueResult();
-		if (value == null) {
-			return 0L;
-		}
-		return value;
-	}
-
-	public List<Student> finbyStudentId(final String id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		if(id.equals("T0011TH")) {
-			return session.createQuery("FROM "+Student.class.getName() + " where daxoa = 0 order by firstname asc", Student.class).getResultList();
-		}else {
-			return session.createQuery("FROM "+Student.class.getName()
-					+" where studentma = '"+id+"' ", Student.class).getResultList();
-		}
-		
-	}
-
+	//-----88
 	public void UpdatePass(final String newPass, final String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Users u = this.finbyId(id);
-		u.setPassword(newPass);
+		User_admin u = this.finbyUserId(id);
+		u.setPassword(newPass.trim());
 		u.setNgaysua(new Date());
-		if(id.equals("T0011TH")) {
+		if(u.getDaxoa() == 2) {
 			u.setDaxoa(2);
 		}else {
 			u.setDaxoa(1);
@@ -114,7 +56,7 @@ public class UserDao {
 		String message = "The change password process has completed successfully." + "\n" + "- Username:"
 				+ u.getUsername() + "\n" + "- Password:" + newPass;
 		SimpleMailMessage email = new SimpleMailMessage();
-		email.setTo(u.getEmail());
+		//email.setTo(u.getEmail());
 		email.setSubject(subject);
 		email.setText(message);
 		try {					
@@ -123,5 +65,94 @@ public class UserDao {
 			ex.printStackTrace();
 		}
 	}
+	static SimpleDateFormat formatDateShort = new SimpleDateFormat("dd/MM/yyyy");
+	
+	public static Date parseStringToDate(String data) {
+		try {
+			return formatDateShort.parse(data);
+		} catch (Exception es) {
+		}
+		return null;
+	}
+	//-----10
+	public int maxDiem() {
+		Session session = this.sessionFactory.getCurrentSession();		
+    	String sql = "Select max(o.id) from " + Diem.class.getName() + " o ";
+    	Integer value = (Integer)session.createQuery(sql).uniqueResult();    	
+        if (value == null) {
+            return 0;
+        }
+        return value;
+    }
 
+    public int maxUser_role() {
+		Session session = this.sessionFactory.getCurrentSession();		
+    	String sql = "Select max(o.user_role_id) from " + User_roles.class.getName() + " o ";
+    	Integer value = (Integer)session.createQuery(sql).uniqueResult();    	
+        if (value == null) {
+            return 0;
+        }
+        return value;
+    }
+	public void popupAddNewSinhVien(final ViewStudent v, Authentication au, final String ngaysinhNew) {
+		try {					
+			Session session = this.sessionFactory.getCurrentSession();
+			String masv = v.getMasinhvien().trim();
+			String sqlSinhVien = "Select count(o.masinhvien) from "+SinhVien.class.getName() + " o where o.daxoa = 0 and o.masinhvien = '"+masv+"'";
+			Long value = (Long)session.createQuery(sqlSinhVien).uniqueResult();
+			if(value == 0) {
+				SinhVien sv = new SinhVien();
+				sv.setMasinhvien(masv);
+				sv.setHosinhvien(v.getHosinhvien());
+				sv.setTensinhvien(v.getTensinhvien());
+				sv.setNgaysinh(parseStringToDate(ngaysinhNew));
+				sv.setLop(v.getLop());
+				sv.setNgaytao(new Date());
+				sv.setNguoitao(au.getName());
+				sv.setDaxoa(0);
+				session.save(sv);
+				User_roles ur = new User_roles();
+				ur.setUser_role_id(this.maxUser_role() + 1);
+				ur.setUsername(masv);
+				ur.setRole("ROLE_ADMIN");
+				session.save(ur);
+				User_admin u = new User_admin();
+				u.setUsername(masv);
+				u.setPassword(masv);
+				u.setEnabled(1);
+				u.setNgaytao(new Date());
+				u.setDaxoa(0);
+				session.save(u);
+			}
+			String sqlDiemSinhViem = "Select count(o.id) from "+Diem.class.getName() + " o where o.daxoa = 0 and o.masinhvien = '"+masv+"' and o.mamonhoc = '"+v.getMamonhoc()+"' ";
+			Long valueDiem = (Long)session.createQuery(sqlDiemSinhViem).uniqueResult();
+			if(valueDiem == 0) {
+				Diem d = new Diem();
+				d.setId(this.maxDiem() + 1);
+				d.setMamonhoc(v.getMamonhoc());
+				d.setMasinhvien(masv);
+				d.setHocky(v.getHocky());
+				d.setNamhoc(v.getNamhoc());
+				d.setSotinchi(v.getSotinchi());
+				d.setQuatrinh(v.getQuatrinh());
+				d.setGiuaky(v.getGiuaky());
+				d.setThi(v.getThi());
+				d.setNgaytao(new Date());
+				d.setNguoitao(au.getName());
+				d.setDaxoa(0);
+				session.save(d);
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}	
+	//-----66
+	public void myFunctionDelete(final String masinhvien) {
+		Session session = this.sessionFactory.getCurrentSession();	
+		SinhVien sv = this.finbyStudent(masinhvien);
+		sv.setDaxoa(1);
+		sv.setNgaytao(new Date());
+		session.update(sv);
+	}
 }
