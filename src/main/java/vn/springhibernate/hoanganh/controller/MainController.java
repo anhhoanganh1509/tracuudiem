@@ -85,7 +85,6 @@ public class MainController {
 			model.addAttribute("mamonhocChoose",mamonhoc);
 			model.addAttribute("hockyChoose",hocky);
 			model.addAttribute("namhocChoose",namhoc);
-			return "jsp/admin";
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
