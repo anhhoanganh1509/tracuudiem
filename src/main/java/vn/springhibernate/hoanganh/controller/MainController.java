@@ -89,7 +89,7 @@ public class MainController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null;				
+		return "jsp/admin";			
 	}
 
 	@RequestMapping(value="jsp/popupAddNewMonHoc", method = RequestMethod.POST)
