@@ -85,11 +85,11 @@ public class MainController {
 			model.addAttribute("mamonhocChoose",mamonhoc);
 			model.addAttribute("hockyChoose",hocky);
 			model.addAttribute("namhocChoose",namhoc);
+			return "jsp/admin";
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "jsp/admin";
-					
+		return null;				
 	}
 
 	@RequestMapping(value="jsp/popupAddNewMonHoc", method = RequestMethod.POST)
