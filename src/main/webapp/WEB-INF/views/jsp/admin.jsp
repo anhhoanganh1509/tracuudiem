@@ -506,7 +506,7 @@
 															<input type="hidden" id="mamonhoc" name="mamonhoc" value="${mamonhocChoose}">
 															<input type="hidden" id="hocky" name="hocky" value="${hockyChoose}">
 															<input type="hidden" id="namhoc" name="namhoc" value="${namhocChoose}">
-															<input type="hidden" id="myFunctionDelete" name="myFunctionDelete" value="${c.masinhvien}">
+															<input type="hidden" id="myFunctionDelete" name="myFunctionDelete" value="${c.id}">
 														</form>
 														
 													</td>
@@ -586,6 +586,6 @@
 		});
 	 
 </script>
-<link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="${root}/css/datepicker.css">
+<script src="${root}/js/bootstrap-datepicker.js"></script>
 </html>

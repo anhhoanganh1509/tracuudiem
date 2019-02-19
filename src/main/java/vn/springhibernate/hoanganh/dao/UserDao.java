@@ -150,9 +150,14 @@ public class UserDao {
 	//-----66
 	public void myFunctionDelete(final String masinhvien) {
 		Session session = this.sessionFactory.getCurrentSession();	
-		SinhVien sv = this.finbyStudent(masinhvien);
+		Diem sv = this.finbyDiem(masinhvien);
 		sv.setDaxoa(1);
 		sv.setNgaytao(new Date());
 		session.update(sv);
+	}
+	
+	public Diem finbyDiem(final String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(Diem.class, id);
 	}
 }
