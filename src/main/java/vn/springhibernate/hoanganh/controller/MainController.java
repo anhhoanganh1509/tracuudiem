@@ -74,10 +74,6 @@ public class MainController {
 	public String formSubmitViewStudent(Authentication au, Model model, @RequestParam(value = "mamonhoc", defaultValue = "") String mamonhoc,
 			@RequestParam(value = "hocky", defaultValue = "") String hocky, @RequestParam(value = "namhoc", defaultValue = "") String namhoc) {	
 		try { 
-			model.addAttribute("admin","admin");
-			model.addAttribute("mamonhocChoose",mamonhoc);
-			model.addAttribute("hockyChoose",hocky);
-			model.addAttribute("namhocChoose",namhoc);
 			List<MonHoc> mh = mService.finbyMonHocList();
 			model.addAttribute("finbyMonHocList",mh);
 			List<ViewStudent> mhList = mService.finbyViewMonHocList(mamonhoc, hocky, namhoc);
@@ -85,6 +81,10 @@ public class MainController {
 			model.addAttribute("popupAddNewMonHoc",new MonHoc());
 			model.addAttribute("popupCapNhatDiem",new Diem());
 			model.addAttribute("popupAddNewSinhVien",new ViewStudent());
+			model.addAttribute("admin","admin");
+			model.addAttribute("mamonhocChoose",mamonhoc);
+			model.addAttribute("hockyChoose",hocky);
+			model.addAttribute("namhocChoose",namhoc);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -95,11 +95,11 @@ public class MainController {
 	@RequestMapping(value="jsp/popupAddNewMonHoc", method = RequestMethod.POST)
 	public String popupAddNewMonHoc(Authentication au, Model model,@ModelAttribute("popupAddNewMonHoc") MonHoc m,
 			@RequestParam(value = "hockyChoose", defaultValue = "") String hocky, @RequestParam(value = "namhocChoose", defaultValue = "") String namhoc,
-			@RequestParam(value = "mamonhocChoose", defaultValue = "") String mamonhoc) {		
+			@RequestParam(value = "mamonhocChoose", defaultValue = "") String mamonhoc) {	
 		try {
 			mService.popupAddNewMonHoc(m, au);
 		}catch(Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		List<MonHoc> mh = mService.finbyMonHocList();
 		model.addAttribute("finbyMonHocList",mh);
@@ -112,7 +112,7 @@ public class MainController {
 		model.addAttribute("admin","admin");
 		model.addAttribute("adminChooseReadyAction","admin");
 		model.addAttribute("mamonhocChooseReadyAction",mamonhoc);
-		model.addAttribute("hockyChooseReadyActionAction",hocky);
+		model.addAttribute("hockyChooseReadyActionAction",hocky); 
 		model.addAttribute("namhocChooseReadyActionAction",namhoc);
 		return "jsp/admin";						
 	}

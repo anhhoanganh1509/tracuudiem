@@ -38,7 +38,7 @@ public class MonHoc {
 	private int daxoa;
 
 	public MonHoc() {
-		super();
+		
 	}
 
 	public String getMamonhoc() {
