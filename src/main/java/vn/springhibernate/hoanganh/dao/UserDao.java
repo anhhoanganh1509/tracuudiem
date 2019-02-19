@@ -147,6 +147,11 @@ public class UserDao {
 			ex.printStackTrace();
 		}
 	}	
+	
+	public Diem finbyDiem(final String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(Diem.class, Integer.parseInt(id));
+	}
 	//-----66
 	public void myFunctionDelete(final String masinhvien) {
 		Session session = this.sessionFactory.getCurrentSession();	
@@ -156,8 +161,4 @@ public class UserDao {
 		session.update(sv);
 	}
 	
-	public Diem finbyDiem(final String id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		return session.get(Diem.class, id);
-	}
 }
